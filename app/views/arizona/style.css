@@ -1,0 +1,25 @@
+.carousel-caption h1 {
+   font-size: 40px;
+    font-style:bold;
+	 -webkit-text-stroke: .5px black;
+   color: white;
+}
+
+.carousel-caption p {
+   font-size: 30px;
+     -webkit-text-stroke: .5px black;
+   color: white;
+}
+body {
+	background-color: #ffab8c;
+	}
+.navbar a {
+    color: black  !important;
+	font-size:20px;
+}
+
+.item {
+    display: none;
+    position: relative;
+    .transition(1s ease-in-out left);
+}
