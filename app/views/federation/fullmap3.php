@@ -84,10 +84,6 @@ $(document).ready(function(){
             {
 
 					       alert("You clicked "+this.id+ " it has: "+ (i+1) + " Attractions!");
-                 if (window.confirm('If you click "ok" you will be redirected to the attractions page for that state (NOT YET IMPLEMENTED). Cancel will load this website '))
-{
-window.location.href='https://www.cs.colostate.edu/~tsciano/ct310/index.php/federation/fullmap3';
-};
 
                }
 				         }
@@ -279,7 +275,7 @@ var count1=0;
 																				$('#table-body').append($('<hr>'));
 																				// colorStates();
 																			}
-																			$('#table-body').append($('<tr style="background-color:'+color[idx]+'";">').append ($('<a />', { href: "/~" + "tsciano" +
+																			$('#table-body').append($('<tr style="background-color:'+color[idx]+'";">').append ($('<a />', { href: "/~" + eid +
 																			"/ct310/index.php/federation/attraction/"+id, html:"EID: "+eid+ " ID: "+id+" Name: "+name +" State: "+ state+" Team Name: "
 																			+ team+" Index:"+idx})));
 																			colorStates();
@@ -305,7 +301,7 @@ var count1=0;
 																					$('#table-body').append($('<hr>'));
 																				// colorStates();
 																			}
-																			$('#table-body').append($('<tr style="background-color:'+color[idx]+'";">').append ($('<a />', { href: "/~" + "tsciano" +
+																			$('#table-body').append($('<tr style="background-color:'+color[idx]+'";">').append ($('<a />', { href: "/~" + eid +
 																			"/ct310/index.php/federation/attraction/"+id, html:"EID: "+eid+ " ID: "+id+" Name: "+name +" State: "+ state+" Team Name: "
 																			+ team+" Index:"+idx})));
 																			colorStates();
