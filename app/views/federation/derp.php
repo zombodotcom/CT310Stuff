@@ -4,6 +4,11 @@
 
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
+
+
+
+
+
 <style>
 body {
    font-family: 'Roboto', sans-serif;
@@ -47,70 +52,93 @@ path:hover, circle:hover {
   border-radius: 5px;
   padding: 5px;
   /* font-family: arial; */
-}</style>
+}
+
+</style>
+
+
+
+
+
+
+
+
+
 	<head>
 		<meta charset="utf-8">
 		<title>CT310 Examples</title>
+
 		<script
 		  src="https://code.jquery.com/jquery-3.3.1.js"
 		  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 		  crossorigin="anonymous">
 	    </script>
+      <?php echo Asset::css('bootstrap.min.css'); ?>
+      <?php echo Asset::js('bootstrap.bundle.min.js'); ?>
+      <?php echo Asset::js('scrolling-nav.js'); ?>
+      <?php echo Asset::css('scrolling-nav.css'); ?>
+
 <!-- 	    <link rel="stylesheet" type="text/css" href="main.css" /> -->
+<!-- Latest compiled and minified CSS -->
+
+
+
 	</head>
+
+
 	<body>
 		<div id="head">
-			<h1>All Status</h1>
+			<h1>NKTA Full Map</h1>
 		</div>
 		<!-- <p>Color the States! <var id="myVar">this text</var> to red.</p>
 
 <button onclick="colorStates()">Try it</button> -->
-<script>
-$(document).ready(function(){
-    $("td").find("p").find("ks").css({"color": "red", "border": "2px solid red"});
-});
-
-var wColor=["DEEPSKYBLUE", "LIGHTSTEELBLUE", "LIGHTGREEN", "CORAL", "DEEPPINK", "PALEVIOLETRED","LIGHTCORAL"];
-var i=0;
-var theHolyVarible=0;
-$(document).ready(function(){
-    $(".stateclicker").click(function(){
-      var derpcolor=this.style.fill;
-
-			if (this.style.fill===""){
-					alert("You clicked "+this.id+ " it has: 0 Attractions");
-			}
-        else
-        {
-          for (i=0;i<8;i++)
-          {
-            if (derpcolor===wColor[i].toLowerCase())
-            {
-            // get the actual attractions in the alert bot maybe add redirect to thoise attractions only
-					       alert("You clicked "+this.id+ " it has: "+ (i+1) + " Attractions!");
-
-
-               }
-				         }
-        }
 
 
 
 
 
-    });
-});
+<?php $session = Session::instance();
+    $username=Session::get('username');
+    if(!isset($username)){
+      $username = "guest";
+}?>
 
 
+<ul class="nav navbar-nav navbar-justified">
+
+  <li class="dropdown" id="menuLogin">
+            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">Login</a>
+            <div class="dropdown-menu" style="padding:17px;">
+          <?php
+          $session = Session::instance();
+          if(strcmp("",$session->get('username'))==0){ ?>
+              <form action=<?=Uri::create("arizona/login"); ?> method="POST">
+                <input name="username" id="username" type="text" placeholder="Username">
+                <input name="password" id="password" type="password" placeholder="Password"><br>
+                <input type="submit" value="login">
+              </form>
+
+          <?php } else { ?>
+            <form action=<?=Uri::create("arizona/logout"); ?> method="POST">
+            <input type="submit" value="logout">
+            </form>
+
+          <?php } ?>
+            <a href=<?=Uri::create("arizona/forgotPW.php"); ?> >Forgot Password?</a>
+            </div>
+          </li>
+        </ul>
 
 
+<!-- <a href="https://www.cs.colostate.edu/~tsciano/ct310/index.php/arizona/addAttraction">Add Attractions!</a> -->
 
-
-
-</script>
-
-
-
+<?php
+  $session = Session::instance();
+  if($session->get('admin') == 1){
+?>
+  <li><a href=<?=Uri::create("arizona/addAttraction.php"); ?>> Add Attraction</a></li>
+<?php } ?>
 
 <h3>Attraction Count!</h3>
 <p><font color="DEEPSKYBLUE">One</font>
@@ -126,8 +154,12 @@ $(document).ready(function(){
 </br>
 <button class="button" onclick="document.getElementById('mainContent').style.display='none'">Hide that long list plz... </button>
 
+
+
+
+
 		<div id="mainContent" style="display:none">
-			<table>
+			<table data-toggle="table">
 				<thead>
 					<tr>
 						<th>EID</th>
@@ -137,6 +169,7 @@ $(document).ready(function(){
             <th width="65%">Desc</th>
             <th>Image!</th>
             <th>Link</th>
+            <th>Add Item!</th>
 					</tr>
 				</thead>
 				<tbody id="table-body">
@@ -146,6 +179,14 @@ $(document).ready(function(){
 
 </br>
 </br>
+
+<?php
+  $session = Session::instance();
+  if($session->get('admin') == 1){
+?>
+  <li><a href=<?=Uri::create("arizona/addAttraction.php"); ?>> Add Attraction</a></li>
+<?php } ?>
+
 <h3>Attraction Count!</h3>
 <p><font color="DEEPSKYBLUE">One</font>
 <font color="LIGHTSTEELBLUE">Two</font>
@@ -237,6 +278,31 @@ $(document).ready(function(){
 		var color=["DEEPSKYBLUE", "LIGHTSTEELBLUE", "LIGHTGREEN", "CORAL", "DEEPPINK", "PALEVIOLETRED","LIGHTCORAL"];
 var count1=0;
 var theHolyTable;
+var states=[];
+var stateCount;
+var countemup=0;
+var count3=0;
+var ky=0;
+var theHolyVarible=0;
+var derp=[];
+var tHT=[];
+
+// function derp(eid,id){
+//   $.getJSON("/~" + eid + "/ct310/index.php/federation/listing/", function(data1) {
+//         var text = `ID: ${data1.id}<br>
+//                     Name: ${data1.Name}<br>
+//                     State: ${data1.state}`
+//   });
+// }
+
+
+
+
+
+
+
+
+
 
 			$.ajax("/~ct310/yr2018sp/master.json",
       {
@@ -261,13 +327,22 @@ var theHolyTable;
                               {
 																	success: function(attr)
                                   {
-																		$.each(JSON.parse(attr), function(idx, obj)
+                                    if (typeof(attr)!="object"){
+                                            attr=JSON.parse(attr);
+                                    }
+																		$.each(attr, function(idx, obj)
                                     {
 																					var id = obj.id;
 																					var name = obj.name;
 																					var state = obj.state;
+                                          var text2 = `ID: ${obj.id}<br>
+                                                      Name: ${obj.Name}<br>
+                                                      State: ${data.state}`
 
-                                          theHolyTable=([obj.state][obj.name]);
+
+                                          // derp.sort();
+
+                                          // theHolyTable=[obj.state, obj.name, obj.id];
                                           // $('#table-body').append($('<p>'+obj.state+" "+obj.name+eid+'</p>'));
 
                                           $.getJSON("/~" + eid + "/ct310/index.php/federation/attraction/"+obj.id, function(data)
@@ -277,6 +352,45 @@ var theHolyTable;
                                                           Name: ${data.Name}<br>
                                                           Desc:${data.desc}
                                                           State: ${data.state}`
+
+                                            // states.concat([data.name,data.state,data.id]);
+                                            //
+                                            //
+                                            // stateCount.concat([state]);
+                                              derp.push([eid,id,name,data.desc,data.state]);
+                                            states.push(data.state);
+                                            states.sort();
+                                            tHT=derp;
+                                            // console.log(states.concat([data.state]));
+                                            // for (countemup=0;countemup<20;countemup++){
+                                            //   if (data.state==)
+                                            // }
+
+
+//                                             function foo(arr) {
+//                                                 var a = [], b = [], prev;
+//
+//                                                 arr.sort();
+//                                                 for ( var i = 0; i < arr.length; i++ ) {
+//                                                     if ( arr[i] !== prev ) {
+//                                                         a.push(arr[i]);
+//                                                         b.push(1);
+//                                                     } else {
+//                                                         b[b.length-1]++;
+//                                                     }
+//                                                     prev = arr[i];
+//                                                 }
+//
+//                                                 return [a, b];
+//                                             }
+//
+//                                             var statecount = foo(states);
+                                            // document.write('[' + result[0] + ']<br>[' + result[1] + ']')
+
+
+                                            // for (count3=0;count3<data.)
+                                            var wColor=["DEEPSKYBLUE", "LIGHTSTEELBLUE", "LIGHTGREEN", "CORAL", "DEEPPINK", "PALEVIOLETRED","LIGHTCORAL"];
+
 
 
 
@@ -318,14 +432,23 @@ var theHolyTable;
 																			colorStates();
                                       $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+eid+'</p>')));
                                       $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+id+'</p>')));
-                                        $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+name+'</p>')));
-                                          $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+state+'</p>')));
-                                                $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+data.desc+'</p>')));
-                                                $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<img>',{id:'theImg',src:"/~" + eid + "/ct310/index.php/federation/attrImage/"+obj.id ,height:20,width:20})));
-                                                // $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+"Derp"+'</p>')));
-                                                $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<a />', { href: "/~" + eid +
-                                                "/ct310/index.php/federation/attraction/"+id, html:"EID: "+eid+ " ID: "+id+" Name: "+name +" State: "+ state+" Team Name: "
+                                      $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+obj.name+'</p>')));
+                                      $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+obj.state+'</p>')));
+                                      $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+data.desc+'</p>')));
+                                      // if (obj.id.substring(1,4)==="http"){
+                                      //     $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<img>',{id:'theImg',src:obj.id,height:200,width:200})));
+                                      //
+                                      // }
+                                      // else{
+                                                $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<img>',{id:'theImg',src:"/~" + eid + "/ct310/index.php/federation/attrImage/"+obj.id ,height:200,width:200})));
+                                                // }
+                                      // $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+"Derp"+'</p>')));
+                                      $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<a />', { href: "/~" + eid +
+                                      "/ct310/index.php/federation/attraction/"+id, html:"EID: "+eid+ " ID: "+id+" Name: "+name +" State: "+ state+" Team Name: "
                                                 + team+" Index:"+idx})));
+                                    $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+"ADD ITEM!"+'</p>')));
+
+
 
 																		}
 	//                                     if(status.status === ""){
@@ -352,15 +475,22 @@ var theHolyTable;
 																			colorStates();
                                       $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+eid+'</p>')));
                                       $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+id+'</p>')));
-                                        $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+name+'</p>')));
-                                          $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+state+'</p>')));
-                                          $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+data.desc+'</p>')));
-                                          $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<img>',{id:'theImg',src:"/~" + eid + "/ct310/index.php/federation/attrImage/"+obj.id ,height:20,width:20})));
+                                      $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+obj.name+'</p>')));
+                                        $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+obj.state+'</p>')));
+                                              $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+data.desc+'</p>')));
+                                              // if (obj.id.substring(1,4)==="http"){
+                                              //     $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<img>',{id:'theImg',src:obj.id,height:200,width:200})));
+                                              //
+                                              // }
+                                              // else{
+                                                        $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<img>',{id:'theImg',src:"/~" + eid + "/ct310/index.php/federation/attrImage/"+obj.id ,height:200,width:200})));
+                                                        // }
                                           // $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+"Derp"+'</p>')));
 
                                           $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<a />', { href: "/~" + eid +
                                           "/ct310/index.php/federation/attraction/"+id, html:"EID: "+eid+ " ID: "+id+" Name: "+name +" State: "+ state+" Team Name: "
                                           + team+" Index:"+idx})));
+                                        $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+"ADD ITEM!"+'</p>')));
 
 																		}
 																    }
@@ -378,8 +508,65 @@ var theHolyTable;
 
 						});
 // $('#TX').replaceWith("#TX");
+
+var wColor=["DEEPSKYBLUE", "LIGHTSTEELBLUE", "LIGHTGREEN", "CORAL", "DEEPPINK", "PALEVIOLETRED","LIGHTCORAL"];
+var i=0;
+var theHolyVarible=0;
+
+$(document).ready(function(){
+    $(".stateclicker").click(function(){
+      var derpcolor=this.style.fill;
+
+			if (this.style.fill===""){
+					alert("You clicked "+this.id+ " it has: 0 Attractions");
+			}
+        else
+        {
+          for (i=0;i<8;i++)
+          {
+            if (derpcolor===wColor[i].toLowerCase())
+            {
+            // get the actual attractions in the alert bot maybe add redirect to thoise attractions only
+
+
+
+
+
+					       alert("You clicked "+this.id+ " it has: "+ (i+1) + " Attractions!");
+
+
+               }
+				         }
+        }
+
+
+
+
+
+    });
+});
+
+
+
+
+
 	</script>
+
+
+
+
 <script>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -406,5 +593,6 @@ if(ios) {
   });
 }
 </script>
+
 
 </html>

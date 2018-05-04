@@ -4,6 +4,11 @@
 
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
+
+
+
+
+
 <style>
 body {
    font-family: 'Roboto', sans-serif;
@@ -47,17 +52,41 @@ path:hover, circle:hover {
   border-radius: 5px;
   padding: 5px;
   /* font-family: arial; */
-}</style>
+}
+
+</style>
+
+
+
+
+
+
+
+
+
 	<head>
 		<meta charset="utf-8">
 		<title>CT310 Examples</title>
+
 		<script
 		  src="https://code.jquery.com/jquery-3.3.1.js"
 		  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 		  crossorigin="anonymous">
 	    </script>
+
 <!-- 	    <link rel="stylesheet" type="text/css" href="main.css" /> -->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+
+<!-- Latest compiled and minified Locales -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/locale/bootstrap-table-zh-CN.min.js"></script>
+
 	</head>
+
+
 	<body>
 		<div id="head">
 			<h1>All Status</h1>
@@ -65,64 +94,40 @@ path:hover, circle:hover {
 		<!-- <p>Color the States! <var id="myVar">this text</var> to red.</p>
 
 <button onclick="colorStates()">Try it</button> -->
-<script>
-
-var wColor=["DEEPSKYBLUE", "LIGHTSTEELBLUE", "LIGHTGREEN", "CORAL", "DEEPPINK", "PALEVIOLETRED","LIGHTCORAL"];
-var i=0;
-$(document).ready(function(){
-    $(".stateclicker").click(function(){
-      var derpcolor=this.style.fill;
-
-			if (this.style.fill===""){
-					alert("You clicked "+this.id+ " it has: 0 Attractions");
-			}
-        else
-        {
-          for (i=0;i<8;i++)
-          {
-            if (derpcolor===wColor[i].toLowerCase())
-            {
-
-					       alert("You clicked "+this.id+ " it has: "+ (i+1) + " Attractions!");
-
-               }
-				         }
-        }
-				// for(i=0;i<8;i++){
-
-
-
-				// }
-
-    });
-});
-</script>
 
 
 
 
-<h3>Color Index</h3>
-<p><font color="DEEPSKYBLUE">0</font>
-<font color="LIGHTSTEELBLUE">1</font>
-<font color="LIGHTGREEN">2</font>
-<font color="CORAL">3</font>
-<font color="DEEPPINK">4</font>
-<font color="PALEVIOLETRED">5</font>
-<font color="LIGHTCORAL">6</font></p>
+
+<h3>Attraction Count!</h3>
+<p><font color="DEEPSKYBLUE">One</font>
+<font color="LIGHTSTEELBLUE">Two</font>
+<font color="LIGHTGREEN">Three</font>
+<font color="CORAL">Four</font>
+<font color="DEEPPINK">Five</font>
+<font color="PALEVIOLETRED">Six</font>
+<font color="LIGHTCORAL">Seven</font></p>
 <button class="button"onclick="document.getElementById('mainContent').style.display='block'">Wheres the List!? Don't Panic!!! Click ME! ;)</button>
 </br>
 </br>
 </br>
 <button class="button" onclick="document.getElementById('mainContent').style.display='none'">Hide that long list plz... </button>
 
+
+
+
+
 		<div id="mainContent" style="display:none">
-			<table>
+			<table data-toggle="table">
 				<thead>
 					<tr>
 						<th>EID</th>
 						<th>ID</th>
 						<th>Name</th>
 						<th>State</th>
+            <th width="65%">Desc</th>
+            <th>Image!</th>
+            <th>Link</th>
 					</tr>
 				</thead>
 				<tbody id="table-body">
@@ -132,14 +137,44 @@ $(document).ready(function(){
 
 </br>
 </br>
-<h3>Color Index</h3>
-<p><font color="DEEPSKYBLUE">0</font>
-<font color="LIGHTSTEELBLUE">1</font>
-<font color="LIGHTGREEN">2</font>
-<font color="CORAL">3</font>
-<font color="DEEPPINK">4</font>
-<font color="PALEVIOLETRED">5</font>
-<font color="LIGHTCORAL">6</font></p>
+<!-- <table data-toggle="table"
+    >
+    <thead>
+        <tr>
+            <th data-field="fruit" data-sortable="true">Item</th>
+            <th data-field="date"  data-sortable="true" data-sort-name="_date_data" data-sorter="monthSorter">Date</th>
+            <th data-field="type"  data-sortable="true">Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>Pear  </td><td data-month="1">January</td> <td>Fruit</td></tr>
+        <tr><td>Carrot</td><td data-month="3">March</td>   <td>Vegetable</td></tr>
+        <tr><td>Apple </td><td data-month="2">February</td><td>Fruit</td></tr>
+    </tbody>
+</table> -->
+
+
+<!--
+<script>
+function monthSorter(a, b) {
+    if (a.month < b.month) return -1;
+    if (a.month > b.month) return 1;
+    return 0;
+}
+</script> -->
+
+
+<h3>Attraction Count!</h3>
+<p><font color="DEEPSKYBLUE">One</font>
+<font color="LIGHTSTEELBLUE">Two</font>
+<font color="LIGHTGREEN">Three</font>
+<font color="CORAL">Four</font>
+<font color="DEEPPINK">Five</font>
+<font color="PALEVIOLETRED">Six</font>
+<font color="LIGHTCORAL">Seven</font></p>
+
+
+
 		<div id="info-box"></div>
 		<?xml version="1.0" encoding="utf-8"?>
 		<svg xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="us-map" preserveAspectRatio="xMinYMin meet" sodipodi:docname="Republican_Party_presidential_primaries_results,_2016.svg" inkscape:version="0.91 r13725" x="0px" y="0px" width="959px" height="593px" viewBox="174 100 959 593" enable-background="new 174 100 959 593" xml:space="preserve">
@@ -219,36 +254,182 @@ $(document).ready(function(){
 	<script>
 		var color=["DEEPSKYBLUE", "LIGHTSTEELBLUE", "LIGHTGREEN", "CORAL", "DEEPPINK", "PALEVIOLETRED","LIGHTCORAL"];
 var count1=0;
+var theHolyTable;
+var states=[];
+var stateCount;
+var countemup=0;
+var count3=0;
+var ky=0;
+var theHolyVarible=0;
 
-			$.ajax("/~ct310/yr2018sp/master.json", {
-								success: function(data) {
+function derp(eid,id){
+  $.getJSON("/~" + eid + "/ct310/index.php/federation/listing/", function(data1) {
+        var text = `ID: ${data1.id}<br>
+                    Name: ${data1.Name}<br>
+                    State: ${data1.state}`
+  });
+}
+
+
+
+
+
+
+
+
+
+
+			$.ajax("/~ct310/yr2018sp/master.json",
+      {
+								success: function(data)
+                {
 										//this loops through all eids in the url mentioned above::::::KEEP THIS
 										$.each(data, function(index, field)
 										{
 												var eid = field.eid;
 												var team = field.team;
-												if(eid === ""){
-														$('#table-body').append($('<tr style="background-color: yellow;">').text("undefined" + " " + eid + " " + team));
+												if(eid === "")
+                        {
+														$('#table-body').append($('<tr style="background-color: yellow;">').text("undefined" + " " + eid + " " + team)
+                          );
+
 												}
-												$.ajax("/~" + eid + "/ct310/index.php/federation/status", {
-														success: function(status) {
-															$.ajax("/~" + eid + "/ct310/index.php/federation/listing.json", {
-																	success: function(attr) {
-																		$.each(JSON.parse(attr), function(idx, obj) {
+												$.ajax("/~" + eid + "/ct310/index.php/federation/status",
+                        {
+														success: function(status)
+                            {
+															$.ajax("/~" + eid + "/ct310/index.php/federation/listing.json",
+                              {
+																	success: function(attr)
+                                  {
+																		$.each(JSON.parse(attr), function(idx, obj)
+                                    {
 																					var id = obj.id;
 																					var name = obj.name;
 																					var state = obj.state;
-																					// count1++;
-																					// count1=count1;
-																					// if (idx==="NULL"){
-																					// 		$('#table-body').append($('</br>'));
-																					// 		// colorStates();
-																					//
-																					// }
+                                          var text2 = `ID: ${obj.id}<br>
+                                                      Name: ${obj.Name}<br>
+                                                      State: ${data.state}`
+
+                                          derp(field.eid,obj.id);
+
+                                          // theHolyTable=[obj.state, obj.name, obj.id];
+                                          // $('#table-body').append($('<p>'+obj.state+" "+obj.name+eid+'</p>'));
+
+                                          $.getJSON("/~" + eid + "/ct310/index.php/federation/attraction/"+obj.id, function(data)
+                                          {
+
+                                              var text = `ID: ${data.id}<br>
+                                                          Name: ${data.Name}<br>
+                                                          Desc:${data.desc}
+                                                          State: ${data.state}`
+
+                                            // states.concat([data.name,data.state,data.id]);
+                                            //
+                                            //
+                                            // stateCount.concat([state]);
+                                            states.push(data.state);
+                                            states.sort();
+                                            // console.log(states.concat([data.state]));
+                                            // for (countemup=0;countemup<20;countemup++){
+                                            //   if (data.state==)
+                                            // }
+
+
+
+                                            function foo(arr) {
+                                                var a = [], b = [], prev;
+
+                                                arr.sort();
+                                                for ( var i = 0; i < arr.length; i++ ) {
+                                                    if ( arr[i] !== prev ) {
+                                                        a.push(arr[i]);
+                                                        b.push(1);
+                                                    } else {
+                                                        b[b.length-1]++;
+                                                    }
+                                                    prev = arr[i];
+                                                }
+
+                                                return [a, b];
+                                            }
+
+                                            var statecount = foo(states);
+                                            // document.write('[' + result[0] + ']<br>[' + result[1] + ']')
+
+
+                                            // for (count3=0;count3<data.)
+                                            var wColor=["DEEPSKYBLUE", "LIGHTSTEELBLUE", "LIGHTGREEN", "CORAL", "DEEPPINK", "PALEVIOLETRED","LIGHTCORAL"];
+
+                                            // $(document).ready(function()
+                                            // {
+                                            //     $(".stateclicker").click(function()
+                                            //     {
+                                            //       var derpcolor=this.style.fill;
+                                            //
+                                            // 			if (this.style.fill==="")
+                                            //       {
+                                            // 					alert("You clicked "+this.id+ " it has: 0 Attractions");
+                                            // 			}
+                                            //         else
+                                            //         {
+                                            //           for (ky=0;ky<states.length;ky++)
+                                            //           {
+                                            //             if (states[ky]===this.id){
+                                            //               theHolyVarible++;
+                                            //               if (states[ky+1]!=this.id){
+                                            //                 alert("You clicked "+this.id+ " it has: "+ theHolyVarible + " Attractions!");
+                                            //
+                                            //
+                                            //                }
+                                            //
+                                            //                }
+                                            // 				  }
+                                            //         }
+                                            //
+                                            //     });
+                                            // });
+
+                                            //
+                                            // $(document).ready(function()
+                                            // {
+                                            //     states.sort();
+                                            //     $(".stateclicker").click(function()
+                                            //     {
+                                            //       var derpcolor=this.style.fill;
+                                            //
+                                            //       if (this.style.fill==="")
+                                            //       {
+                                            //           alert("You clicked "+this.id+ " it has: 0 Attractions");
+                                            //       }
+                                            //         else
+                                            //         {
+                                            //           for (ky=0;ky<states.length;ky++)
+                                            //           {
+                                            //             if (this.id===states[ky])
+                                            //             {
+                                            //               tHV++;
+                                            //               if (states[ky+1]!=this.id){
+                                            //                 alert("You clicked "+this.id+ " it has: "+ tHV + " Attractions!");
+                                            //               }
+                                            //
+                                            //             }
+                                            //
+                                            //             else {
+                                            //
+                                            //             }
+
+
+
+
+
+
+
 
 
 														//trying to differentiate the objects from non-objects
 														//if element is a non-object do the jQuery.parse business
+
 														function colorStates() {
 
 																var x = document.getElementById(state);
@@ -257,6 +438,9 @@ var count1=0;
 
 																// x.datainfo="derp";
 																// totalcount
+                                if(data.desc===undefined){
+                                  data.desc="NULL";
+                                }
 
 														}
 																if(jQuery.type(status) === "object")
@@ -275,10 +459,18 @@ var count1=0;
 																				$('#table-body').append($('<hr>'));
 																				// colorStates();
 																			}
-																			$('#table-body').append($('<tr style="background-color:'+color[idx]+'";">').append ($('<a />', { href: "/~" + eid +
-																			"/ct310/index.php/federation/attraction/"+id, html:"EID: "+eid+ " ID: "+id+" Name: "+name +" State: "+ state+" Team Name: "
-																			+ team+" Index:"+idx})));
+																			$('#table-body').append($('<tr style="background-color:'+color[idx]+'";">').append ($('<td>')));
 																			colorStates();
+                                      $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+eid+'</p>')));
+                                      $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+id+'</p>')));
+                                        $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+obj.name+'</p>')));
+                                          $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+obj.state+'</p>')));
+                                                $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+data.desc+'</p>')));
+                                                // $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<img>',{id:'theImg',src:"/~" + eid + "/ct310/index.php/federation/attrImage/"+obj.id ,height:200,width:200})));
+                                                $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+"Derp"+'</p>')));
+                                                $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<a />', { href: "/~" + eid +
+                                                "/ct310/index.php/federation/attraction/"+id, html:"EID: "+eid+ " ID: "+id+" Name: "+name +" State: "+ state+" Team Name: "
+                                                + team+" Index:"+idx})));
 
 																		}
 	//                                     if(status.status === ""){
@@ -300,28 +492,96 @@ var count1=0;
 																			if (idx==0){
 																					$('#table-body').append($('<hr>'));
 																				// colorStates();
-																			}
-																			$('#table-body').append($('<tr style="background-color:'+color[idx]+'";">').append ($('<a />', { href: "/~" + eid +
-																			"/ct310/index.php/federation/attraction/"+id, html:"EID: "+eid+ " ID: "+id+" Name: "+name +" State: "+ state+" Team Name: "
-																			+ team+" Index:"+idx})));
+																			           }
+														$('#table-body').append($('<tr style="background-color:'+color[idx]+'";">').append ($('<td>')));
 																			colorStates();
-																																					}
-																   }
+                                      $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+eid+'</p>')));
+                                      $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+id+'</p>')));
+                                      $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+obj.name+'</p>')));
+                                        $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+obj.state+'</p>')));
+                                              $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+data.desc+'</p>')));
+                                      // $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<img>',{id:'theImg',src:"/~" + eid + "/ct310/index.php/federation/attrImage/"+obj.id ,height:200,width:200})));
+                                          $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<td>'+'<p>'+"Derp"+'</p>')));
 
+                                          $('#table-body').append($('<td style="background-color:'+color[idx]+'";">').append ($('<a />', { href: "/~" + eid +
+                                          "/ct310/index.php/federation/attraction/"+id, html:"EID: "+eid+ " ID: "+id+" Name: "+name +" State: "+ state+" Team Name: "
+                                          + team+" Index:"+idx})));
 
+																		}
+																    }
 
-});
-																																							},
-																											});
-																																													},
-																								});
-																																								});
+                                  }
+                                  );
+
+                                    });
+														       },
+														});
+														},
+											});
+										  });
 										}
 
 						});
 // $('#TX').replaceWith("#TX");
+
+var wColor=["DEEPSKYBLUE", "LIGHTSTEELBLUE", "LIGHTGREEN", "CORAL", "DEEPPINK", "PALEVIOLETRED","LIGHTCORAL"];
+var i=0;
+var theHolyVarible=0;
+
+$(document).ready(function(){
+    $(".stateclicker").click(function(){
+      var derpcolor=this.style.fill;
+
+			if (this.style.fill===""){
+					alert("You clicked "+this.id+ " it has: 0 Attractions");
+			}
+        else
+        {
+          for (i=0;i<8;i++)
+          {
+            if (derpcolor===wColor[i].toLowerCase())
+            {
+            // get the actual attractions in the alert bot maybe add redirect to thoise attractions only
+
+
+
+
+
+					       alert("You clicked "+this.id+ " it has: "+ (i+1) + " Attractions!");
+
+
+               }
+				         }
+        }
+
+
+
+
+
+    });
+});
+
+
+
+
+
 	</script>
+
+
+
+
 <script>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -348,5 +608,6 @@ if(ios) {
   });
 }
 </script>
+
 
 </html>
